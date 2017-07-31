@@ -16,7 +16,7 @@ import utils.Constants;
 public class FileDownloader {
 	private ArrayList<String> mUrls;
 	private OnDownloadComplete mOnDownloadComplete;
-	
+
 	private ArrayList<String> mFilePaths;
 
 	private Scanner mScanner;
@@ -28,7 +28,7 @@ public class FileDownloader {
 
 	public void run() {
 		try {
-			for(String urlString : mUrls) {				
+			for (String urlString : mUrls) {
 				System.out.println("strating download for : " + urlString);
 				String fileName = getFileName(urlString);
 				URL url = new URL(urlString);
@@ -39,20 +39,22 @@ public class FileDownloader {
 				}
 				writer.close();
 				System.out.println("download finished for : " + urlString);
-				if(mFilePaths == null) {
+				if (mFilePaths == null) {
 					mFilePaths = new ArrayList<>();
 				}
 				mFilePaths.add(fileName);
-				
-				if(Constants.IS_DEVELOPEMENT_ON) {
+
+				if (Constants.IS_DEVELOPEMENT_ON) {
 					break;
 				}
 			}
-			
+			System.out.println("files downloaded.");
 			if (mOnDownloadComplete != null) {
 				mOnDownloadComplete.onDownloadComplete(mFilePaths);
+			} else {
+				System.out.println("cant give callback, as interface is not present!");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

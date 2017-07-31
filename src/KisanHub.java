@@ -14,7 +14,8 @@ import utils.Utils;
  * 
  * step 1 : load all valid urls from given link with help of {@link UrlFetcher}.
  * step 2 : downloads files from urls which are valid {@link FileDownloader}.
- * step 3 : creates weather.csv file and writes data in expected format from all downloaded files {@link FileWriter}.
+ * step 3 : creates weather.csv file and writes data in expected format from all
+ * downloaded files {@link FileWriter}.
  * 
  * @author rohitkhirid
  *
@@ -39,7 +40,7 @@ public class KisanHub {
 		@Override
 		public void onDownloadComplete(ArrayList<String> filePaths) {
 			if (!Utils.isEmpty(filePaths)) {
-				System.out.println("files downloaded, writing those files in weather.csv");
+				System.out.println("Writing downloaded files in weather.csv");
 				FileWriter fileWriter = new FileWriter(filePaths, mOnFileWriteComplete);
 				fileWriter.run();
 			}
@@ -49,7 +50,7 @@ public class KisanHub {
 	private OnFileWriteComplete mOnFileWriteComplete = new OnFileWriteComplete() {
 		@Override
 		public void onFileWriteComplete() {
-			System.out.println("fileWrite complete");
+			System.out.println("output file is ready");
 		}
 	};
 

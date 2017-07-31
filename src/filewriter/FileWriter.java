@@ -9,6 +9,13 @@ import java.util.Scanner;
 import utils.Constants;
 import utils.Utils;
 
+/**
+ * writes contents of file from {@link Constants#DIRECTORY_PATH_INPUT} to file
+ * at {@link Constants#DIRECTORY_PATH_OUTPUT}
+ * 
+ * @author rohitkhirid
+ *
+ */
 public class FileWriter {
 	private ArrayList<String> mFilePaths;
 	private OnFileWriteComplete mOnFileWriteComplete;
@@ -56,8 +63,12 @@ public class FileWriter {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			System.out.println("writing to output file done.");
 			if (mOnFileWriteComplete != null) {
 				mOnFileWriteComplete.onFileWriteComplete();
+			} else {
+				System.out.println("cant give callback, as interface is not present!");
 			}
 		}
 	}
@@ -84,6 +95,12 @@ public class FileWriter {
 		}
 	}
 
+	/**
+	 * gets month from index passed example 0 for JAN, 1 for FEB..
+	 * 
+	 * @param index
+	 * @return
+	 */
 	private String getKeyForIndex(int index) {
 		String keyString = Constants.NA_PLACEHOLDER;
 		try {
@@ -164,6 +181,15 @@ public class FileWriter {
 		return fileNameWithoutExtension.split("_");
 	}
 
+	/**
+	 * returns weatherParam from fileName example if fileName is
+	 * Rainfall_date_England.txt then removes directory path
+	 * {@link Constants#DIRECTORY_PATH_INPUT} and splits fileName with '_' and
+	 * then returns 0th string from string array
+	 * 
+	 * @param filePath
+	 * @return
+	 */
 	private String getWeatherParam(String filePath) {
 		String regionCode = Constants.NA_PLACEHOLDER;
 		try {
@@ -175,6 +201,15 @@ public class FileWriter {
 		return regionCode;
 	}
 
+	/**
+	 * returns regionCode from fileName example if fileName is
+	 * Rainfall_date_England.txt then removes directory path
+	 * {@link Constants#DIRECTORY_PATH_INPUT} and splits fileName with '_' and
+	 * then returns 2nd string from string array
+	 * 
+	 * @param filePath
+	 * @return
+	 */
 	private String getRegionCode(String filePath) {
 		String regionCode = Constants.NA_PLACEHOLDER;
 		try {

@@ -55,10 +55,10 @@ public class Utils {
 	public static void initInputDirectory() {
 		File directory = new File(Constants.DIRECTORY_PATH_INPUT);
 		if (!directory.exists()) {
-			System.out.println("directory not present, creating new one");
+			System.out.println("directory to store downloaded file not present, creating new one");
 			directory.mkdir();
 		} else {
-			System.out.println("directory present, deleting contents");
+			System.out.println("directory present to downoad files, deleting contents");
 			for (File file : directory.listFiles()) {
 				file.delete();
 			}
@@ -77,10 +77,10 @@ public class Utils {
 	public static void initOutputDirectory() {
 		File directory = new File(Constants.DIRECTORY_PATH_OUTPUT);
 		if (!directory.exists()) {
-			System.out.println("directory not present, creating new one");
+			System.out.println("directory not present to store output files, creating new one");
 			directory.mkdir();
 		} else {
-			System.out.println("directory present, deleting contents");
+			System.out.println("directory present to store output files, deleting contents");
 			for (File file : directory.listFiles()) {
 				file.delete();
 			}

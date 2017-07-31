@@ -18,7 +18,6 @@ import utils.Utils;
  *
  */
 public class UrlFetcher {
-
 	private String mUrl;
 	private OnValidUrlFound mOnFetchingComplete;
 
@@ -31,21 +30,22 @@ public class UrlFetcher {
 	}
 
 	/**
-	 * starts the reursive call to {@link UrlFetcher#fetchUrls(String)} and at
+	 * starts the recursive call to {@link UrlFetcher#fetchUrls(String)} and at
 	 * the end gives callback to caller by interface {@link OnValidUrlFound}
 	 * 
 	 * @throws Exception
 	 */
 	public void run() throws Exception {
-		System.out.println("starting crawling");
+		System.out.println("crawling...");
 		fetchUrls(mUrl);
 		if (Utils.isEmpty(mValidUrls)) {
-			System.out.println("fetchign compeleted, found " + mValidUrls.size() + " links in crawling");
+			System.out.println("crawling finished, found " + mValidUrls.size() + " links in crawling");
 		}
-		
+
 		if (mOnFetchingComplete != null) {
-			System.out.println("giving callback");
 			mOnFetchingComplete.onValidUrlFound(mValidUrls);
+		} else {
+			System.out.println("cant give callback, as interface is not present!");
 		}
 	}
 
